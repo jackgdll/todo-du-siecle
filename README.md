@@ -1,20 +1,15 @@
-# 😎 tRPC-SvelteKit example: Bookstall
+# Le Todo du Siècle
 
-[![License][license-image]][license-url]
+## Description
 
-A sample SvelteKit application built to illustrate the usage of [trpc-sveltekit](https://icflorescu.github.io/trpc-sveltekit/).
+Projet réalisé par Jack Goodall (NI: 537010048) dans le cadre du cours GLO-3202 — Sécurité des applications Web.
 
-## Screenshot
+## Stack technique
 
-![tRPC-SvelteKit Example: Bookstall](https://user-images.githubusercontent.com/581999/204535160-5ca59227-81cb-4281-bbad-23a7869c6031.png)
-
-## Acknowledgements
-
-Huge thanks to [Alex / KATT](https://github.com/KATT), for bringing us [tRPC](https://trpc.io/) and for being the first sponsor of this project! 🎉
-
-## License
-
-The [ISC License](LICENSE).
-
-[license-image]: http://img.shields.io/npm/l/trpc-sveltekit.svg?style=flat-square
-[license-url]: LICENSE
+- [SvelteKit](https://kit.svelte.dev/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [Headless UI](https://headlessui.dev/)
+- [tRPC](https://trpc.io/)
+- [Prisma](https://www.prisma.io/)
+- [PostgreSQL](https://www.postgresql.org/)
+- [Railway](https://railway.app/)

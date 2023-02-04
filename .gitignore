@@ -6,6 +6,6 @@ node_modules
 
 # You should uncomment the next lines in your appplication
 
-# .env
-# .env.*
+.env
+.env.*
 # !.env.example

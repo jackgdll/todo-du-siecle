@@ -8,16 +8,16 @@ Projet réalisé par Jack Goodall (NI: 537010048) dans le cadre du cours GLO-320
 
 ## Tech Stack
 
-- **Frontend**
-  - [SvelteKit](https://kit.svelte.dev/)
-  - [TailwindCSS](https://tailwindcss.com/)
-  - [Headless UI](https://headlessui.dev/)
-- **Backend**
-  - [tRPC](https://trpc.io/)
-  - [Prisma](https://www.prisma.io/)
-  - [PostgreSQL](https://www.postgresql.org/)
-- **Deployment**
-  - [Railway](https://railway.app/)
+- Language: [TypeScript](https://www.typescriptlang.org/)
+- JS Framework: [SvelteKit](https://kit.svelte.dev/)
+- CSS Framework [TailwindCSS](https://tailwindcss.com/)
+- UI Library: [Headless UI](https://headlessui.dev/)
+- Authentication: [SvelteKit Auth](https://vercel.com/blog/announcing-sveltekit-auth)
+- Validation: [Zod](https://zod.dev/)
+- API: [tRPC](https://trpc.io/)
+- ORM: [Prisma](https://www.prisma.io/)
+- Database: [PostgreSQL](https://www.postgresql.org/)
+- Deployment: [Railway](https://railway.app/)
 
 ## Installation
 

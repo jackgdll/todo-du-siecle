@@ -2,7 +2,6 @@ import prisma from '$lib/prisma';
 import { auth } from '$lib/trpc/middleware/auth';
 import { logger } from '$lib/trpc/middleware/logger';
 import { t } from '$lib/trpc/t';
-import { Priority } from '@prisma/client';
 import { TRPCError } from '@trpc/server';
 import { z } from 'zod';
 
@@ -11,7 +10,7 @@ const taskSchema = z.object({
   title: z.string().min(3),
   description: z.string().max(1000),
   completed: z.boolean().default(false),
-  priority: z.nativeEnum(Priority),
+  priority: z.enum(['LOW', 'MEDIUM', 'HIGH']),
   due: z
     .date()
     .transform((d) => d.toDateString())
@@ -33,7 +32,7 @@ export const tasks = t.router({
         })
         .extend({
           due: z.coerce.date().nullable(),
-          priority: taskSchema.shape.priority.default(Priority.LOW),
+          priority: taskSchema.shape.priority.default('LOW'),
         }),
     )
     .output(taskSchema.nullable())

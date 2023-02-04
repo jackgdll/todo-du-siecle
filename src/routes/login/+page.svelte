@@ -11,7 +11,7 @@
 </svelte:head>
 
 <header class="mt-14 mb-7 text-center">
-  <h1 class="text-center text-5xl font-extrabold text-zinc-800">
+  <h1 class="text-center text-5xl font-extrabold text-zinc-800 dark:text-zinc-100">
     Le <span class="funky-text">Todo</span> du siècle
   </h1>
   <h2 class="funky-text mt-4 p-4 text-4xl font-extrabold">Sign in :</h2>

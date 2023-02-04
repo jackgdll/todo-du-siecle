@@ -7,21 +7,20 @@ import GitHub from '@auth/core/providers/github';
 import Discord from '@auth/core/providers/discord';
 import { GITHUB_ID, GITHUB_SECRET, DISCORD_ID, DISCORD_SECRET } from '$env/static/private';
 import { sequence } from '@sveltejs/kit/hooks';
+import type { Provider } from '@auth/core/providers';
 
 export const handle = sequence(
   SvelteKitAuth({
     providers: [
-      // @ts-expect-error issue https://github.com/nextauthjs/next-auth/issues/6174
       GitHub({
         clientId: GITHUB_ID,
         clientSecret: GITHUB_SECRET,
       }),
-      // @ts-expect-error issue https://github.com/nextauthjs/next-auth/issues/6174
       Discord({
         clientId: DISCORD_ID,
         clientSecret: DISCORD_SECRET,
       }),
-    ],
+    ] as Provider[], // !: https://github.com/nextauthjs/next-auth/issues/6174
   }),
   createTRPCHandle({
     router,

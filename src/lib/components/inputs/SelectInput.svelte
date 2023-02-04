@@ -15,11 +15,17 @@
 </script>
 
 <Listbox on:change {value} class="relative flex flex-col items-start">
-  <ListboxLabel class="mr-2 p-0 text-sm text-slate-700">Priority</ListboxLabel>
+  <ListboxLabel class="mr-2 mb-1 p-0 text-sm text-slate-700 dark:text-slate-300"
+    >Priority</ListboxLabel
+  >
   <ListboxButton
-    class="flex items-center gap-1 rounded-lg border border-gray-300 bg-white p-3 capitalize text-slate-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-sky-600"
+    class="flex items-center gap-1 rounded-lg border border-gray-300 bg-white p-3 capitalize text-slate-800 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-sky-600 dark:border-gray-700 dark:bg-slate-700 dark:text-slate-200"
     >{value.toLowerCase()}
-    <Icon src={Flag} size="16" class={`${options.find((o) => o.value === value)?.color}`} />
+    <Icon
+      src={Flag}
+      size="16"
+      class="dark:stroke-gray-200 {options.find((o) => o.value === value)?.color}"
+    />
     <Icon src={ChevronDown} size="16" />
   </ListboxButton>
   <Transition
@@ -30,7 +36,9 @@
     leaveFrom="transform scale-100 opacity-100"
     leaveTo="transform scale-95 opacity-0"
   >
-    <ListboxOptions class="rounded-lg border border-gray-300 bg-white p-2 text-slate-800">
+    <ListboxOptions
+      class="absolute -translate-y-full rounded-lg border border-gray-300 bg-white p-2 text-slate-800 dark:border-slate-500 dark:bg-slate-700"
+    >
       {#each options as option}
         <ListboxOption
           value={option.value}

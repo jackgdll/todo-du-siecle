@@ -1,9 +1,11 @@
 <script lang="ts">
+  import { browser } from '$app/environment';
   import { goto } from '$app/navigation';
-  import { onMount } from 'svelte';
   import type { PageData } from './$types';
 
   export let data: PageData;
 
-  onMount(() => goto(data.session ? '/tasks' : '/login'));
+  if (browser) {
+    goto(data.session ? '/tasks' : '/login');
+  }
 </script>

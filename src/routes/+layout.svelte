@@ -1,8 +1,12 @@
 <script lang="ts">
   import { invalidateAll } from '$app/navigation';
+  import Switch from '$lib/components/inputs/Switch.svelte';
+  import { darkMode } from '$lib/darkMode';
   import { signOut } from '@auth/sveltekit/client';
-  import '../app.css';
+  import { ArrowRightOnRectangle, Moon, Sun } from '@steeze-ui/heroicons';
+  import { Icon } from '@steeze-ui/svelte-icon';
   import type { LayoutServerData } from './$types';
+  import '../app.css';
 
   export let data: LayoutServerData;
 </script>
@@ -17,25 +21,35 @@
   />
 </svelte:head>
 
-<button
-  on:click={() => {
-    signOut();
-    invalidateAll();
-  }}
-  class="absolute right-4 top-4 block"
->
-  <img
-    alt="profile"
-    src={data.session?.user?.image}
-    class="mx-auto h-20 w-20 rounded-lg object-cover "
+<div class="absolute right-4 top-4 flex items-center gap-3">
+  <Icon
+    src={$darkMode ? Moon : Sun}
+    theme="solid"
+    size="20"
+    class="fill-sky-600 stroke-sky-600 transition-all dark:fill-sky-300 dark:stroke-sky-300"
   />
-  <div
-    class="center absolute h-full w-full -translate-y-full rounded-lg bg-slate-900 p-2 align-middle text-white underline opacity-0 transition-opacity hover:opacity-70"
-    style="line-height: 4rem;"
-  >
-    Sign out
-  </div>
-</button>
+  <Switch on:change={() => ($darkMode = !$darkMode)} bind:enabled={$darkMode} />
+  {#if data.session}
+    <button
+      on:click={() => {
+        signOut();
+        invalidateAll();
+      }}
+      class="ml-9"
+    >
+      <img
+        alt="profile"
+        src={data.session?.user?.image}
+        class="mx-auto h-20 w-20 rounded-lg object-cover "
+      />
+      <div
+        class="center absolute flex h-20 w-20 -translate-y-full items-center justify-center rounded-lg bg-slate-900 p-2 align-middle opacity-0 transition-opacity hover:opacity-70"
+      >
+        <Icon src={ArrowRightOnRectangle} size="50" class="stroke-white" />
+      </div>
+    </button>
+  {/if}
+</div>
 <main class="m-auto h-full max-h-full max-w-2xl p-6">
   <slot />
 </main>
@@ -43,5 +57,9 @@
 <style lang="postcss">
   :global(html) {
     background-color: theme(colors.stone.100);
+    @apply transition-all duration-300;
+  }
+  :global(html.dark) {
+    background-color: theme(colors.slate.900);
   }
 </style>

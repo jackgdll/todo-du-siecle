@@ -9,16 +9,22 @@
   export let icon: IconSource | undefined = undefined;
 </script>
 
-<div class="flex items-baseline flex-col relative">
-  <label for={name} class="text-sm p-0 text-slate-700 capitalize">{label}</label>
+<div class="relative flex flex-col items-baseline">
+  <label for={name} class="mb-1 p-0 text-sm capitalize text-slate-700 dark:text-slate-300"
+    >{label}</label
+  >
   {#if !!icon}
-    <Icon src={icon} size="20" class="absolute translate-y-8 translate-x-2" />
+    <Icon
+      src={icon}
+      size="20"
+      class="absolute translate-y-8 translate-x-2 stroke-slate-800 dark:stroke-slate-100"
+    />
   {/if}
   <input
     {type}
     {name}
     {placeholder}
-    class="border bg-white border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-600 focus:border-transparent pl-$pr-2 py-2 flex-1 w-full ml-auto placeholder:capitalize"
+    class="pl-$pr-2 ml-auto w-full flex-1 rounded-lg border border-gray-300 bg-white py-2 placeholder:capitalize focus:border-transparent focus:outline-none focus:ring-2 focus:ring-sky-600 dark:border-gray-700 dark:bg-slate-700 dark:text-slate-200 dark:placeholder:text-slate-500"
     class:p-8={!!icon}
     class:p-2={!icon}
   />

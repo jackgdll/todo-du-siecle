@@ -19,9 +19,9 @@
   };
 
   const bgColors = {
-    LOW: 'bg-lime-200',
-    MEDIUM: 'bg-yellow-200',
-    HIGH: 'bg-pink-200',
+    LOW: 'bg-lime-200 dark:bg-emerald-700',
+    MEDIUM: 'bg-yellow-200 dark:bg-yellow-700',
+    HIGH: 'bg-pink-200 dark:bg-pink-700',
   } as const;
 </script>
 
@@ -34,7 +34,7 @@
   <TaskDialog open={true} {editId} close={() => (open = false)} initialValues={values} />
 {/if}
 <header class="flex items-center">
-  <h1 class="my-14 mr-auto text-center text-5xl font-extrabold text-zinc-800">
+  <h1 class="my-14 mr-auto text-center text-5xl font-extrabold text-zinc-800 dark:text-zinc-100">
     Le <span class="funky-text">Todo</span> du siècle
   </h1>
   <Button on:click={newTask}>
@@ -56,11 +56,11 @@
   {:else}
     {#each data.tasks as task (task.id)}
       <li
-        class="list-none rounded-lg border border-stone-300 bg-opacity-10 {bgColors[
+        class="list-none rounded-lg border border-stone-300 bg-opacity-10 dark:bg-opacity-100 {bgColors[
           task.priority
-        ]} p-5 shadow-md shadow-slate-200"
+        ]} p-5 shadow-md shadow-slate-200 dark:shadow-slate-800"
         class:border-lime-600={task.priority === 'LOW'}
-        class:border-yellow-400={task.priority === 'MEDIUM'}
+        class:border-amber-400={task.priority === 'MEDIUM'}
         class:border-pink-600={task.priority === 'HIGH'}
         animate:flip={{ duration: 300 }}
       >

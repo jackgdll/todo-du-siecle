@@ -8,7 +8,7 @@
   import { z } from 'zod';
   import { validator } from '@felte/validator-zod';
   import { Icon } from '@steeze-ui/svelte-icon';
-  import { PlusCircle } from '@steeze-ui/heroicons';
+  import { PencilSquare, PlusCircle } from '@steeze-ui/heroicons';
   import TextInput from '../inputs/TextInput.svelte';
   import ValidationError from '../inputs/ValidationError.svelte';
   import SelectInput from '../inputs/SelectInput.svelte';
@@ -18,6 +18,7 @@
   import Button from '../inputs/Button.svelte';
   import { TRPCClientError } from '@trpc/client';
   import type { RouterInputs } from '$lib/trpc/router';
+  import TextArea from '../inputs/TextArea.svelte';
 
   export let open = false;
   export let close: () => void = () => goto('/tasks');
@@ -71,7 +72,7 @@
   <DialogOverlay class="absolute top-0 left-0 z-10 h-full w-full bg-slate-600 opacity-50" />
   <form
     use:form
-    class="absolute top-1/2 left-1/2 z-20 flex max-h-[90vh] w-1/2 max-w-full -translate-x-1/2 -translate-y-1/2 flex-col space-y-4 rounded-lg bg-slate-50 py-7 shadow-lg"
+    class="absolute top-1/2 left-1/2 z-20 flex max-h-[90vh] w-1/2 max-w-full -translate-x-1/2 -translate-y-1/2 flex-col space-y-4 rounded-lg bg-slate-50 py-7 shadow-lg dark:bg-slate-800"
   >
     <DialogTitle class="funky-text z-20 text-center text-3xl"
       >{editId ? 'Edit Task' : 'Create new Task'}</DialogTitle
@@ -83,7 +84,7 @@
         warnings={$warnings.title ?? []}
         touched={$touched.title}
       />
-      <TextInput name="description" />
+      <TextArea name="description" />
       <ValidationError
         errors={$errors.description ?? []}
         warnings={$warnings.description ?? []}
@@ -106,7 +107,7 @@
     <div class="flex justify-end gap-2 border-t border-slate-300 px-7 pt-4">
       <Button on:click={close} variant="secondary">Cancel</Button>
       <Button type="submit" variant="primary">
-        <Icon src={PlusCircle} size="20" />
+        <Icon src={editId ? PencilSquare : PlusCircle} size="20" />
         {editId ? 'Edit' : 'Create'}
       </Button>
     </div>

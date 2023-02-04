@@ -1,3 +1,7 @@
+<script lang="ts" context="module">
+  export type Values = RouterInputs['tasks']['create'];
+</script>
+
 <script lang="ts">
   import { Dialog, DialogOverlay, DialogTitle } from '@rgossiaux/svelte-headlessui';
   import { createForm } from 'felte';
@@ -5,7 +9,6 @@
   import { validator } from '@felte/validator-zod';
   import { Icon } from '@steeze-ui/svelte-icon';
   import { PlusCircle } from '@steeze-ui/heroicons';
-  import type { RouterInputs } from '../../trpc/router';
   import TextInput from '../inputs/TextInput.svelte';
   import ValidationError from '../inputs/ValidationError.svelte';
   import SelectInput from '../inputs/SelectInput.svelte';
@@ -14,8 +17,7 @@
   import { goto, invalidateAll } from '$app/navigation';
   import Button from '../inputs/Button.svelte';
   import { TRPCClientError } from '@trpc/client';
-
-  type Values = RouterInputs['tasks']['create'];
+  import type { RouterInputs } from '$lib/trpc/router';
 
   export let open = false;
   export let close: () => void = () => goto('/tasks');
@@ -71,7 +73,9 @@
     use:form
     class="absolute top-1/2 left-1/2 z-20 flex max-h-[90vh] w-1/2 max-w-full -translate-x-1/2 -translate-y-1/2 flex-col space-y-4 rounded-lg bg-slate-50 py-7 shadow-lg"
   >
-    <DialogTitle class="funky-text z-20 text-center text-3xl">Create new Task</DialogTitle>
+    <DialogTitle class="funky-text z-20 text-center text-3xl"
+      >{editId ? 'Edit Task' : 'Create new Task'}</DialogTitle
+    >
     <section class="flex flex-col overflow-y-auto px-11">
       <TextInput name="title" />
       <ValidationError

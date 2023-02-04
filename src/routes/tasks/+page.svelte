@@ -1,9 +1,7 @@
 <script lang="ts">
-  import { invalidateAll } from '$app/navigation';
   import Button from '$lib/components/inputs/Button.svelte';
-  import TaskDialog from '$lib/components/Task/TaskDialog.svelte';
+  import TaskDialog, { type Values } from '$lib/components/Task/TaskDialog.svelte';
   import TaskCard from '$lib/components/Task/TaskCard.svelte';
-  import { signOut } from '@auth/sveltekit/client';
   import { PlusCircle } from '@steeze-ui/heroicons';
   import { Icon } from '@steeze-ui/svelte-icon';
   import { flip } from 'svelte/animate';
@@ -12,19 +10,19 @@
   export let data: PageServerData;
 
   let open = false;
+  let editId: string | null = null;
+  let values: Values | undefined;
+
+  const newTask = () => {
+    editId = null;
+    open = true;
+  };
 
   const bgColors = {
     LOW: 'bg-lime-200',
     MEDIUM: 'bg-yellow-200',
     HIGH: 'bg-pink-200',
   } as const;
-
-  let editId: string | null = null;
-
-  const newTask = () => {
-    editId = null;
-    open = true;
-  };
 </script>
 
 <svelte:head>
@@ -32,24 +30,17 @@
   <meta name="description" content="Tasks" />
 </svelte:head>
 
-<TaskDialog {open} {editId} close={() => (open = false)} />
+{#if open}
+  <TaskDialog open={true} {editId} close={() => (open = false)} initialValues={values} />
+{/if}
 <header class="flex items-center">
-  <h1 class="my-14 text-center text-5xl font-extrabold text-zinc-800">
+  <h1 class="my-14 mr-auto text-center text-5xl font-extrabold text-zinc-800">
     Le <span class="funky-text">Todo</span> du siècle
   </h1>
-  <div class="ml-auto flex gap-2 text-right">
-    <Button
-      on:click={() => {
-        signOut();
-        invalidateAll();
-      }}
-      variant="secondary">Sign Out</Button
-    >
-    <Button on:click={newTask}>
-      <Icon src={PlusCircle} size="20" />
-      New Task</Button
-    >
-  </div>
+  <Button on:click={newTask}>
+    <Icon src={PlusCircle} size="20" />
+    New Task</Button
+  >
 </header>
 
 <ul class="flex flex-col gap-2">
@@ -71,9 +62,16 @@
         class:border-lime-600={task.priority === 'LOW'}
         class:border-yellow-400={task.priority === 'MEDIUM'}
         class:border-pink-600={task.priority === 'HIGH'}
-        animate:flip={{ duration: 200 }}
+        animate:flip={{ duration: 300 }}
       >
-        <TaskCard {task} />
+        <TaskCard
+          {task}
+          edit={() => {
+            editId = task.id;
+            open = true;
+            values = { ...task, due: task.due ? new Date(task.due) : null };
+          }}
+        />
       </li>
     {/each}
   {/if}

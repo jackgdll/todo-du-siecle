@@ -19,6 +19,8 @@
 
   export let task: TaskOutput;
 
+  export let edit: () => void;
+
   const toggleCompleted = async (e: CustomEvent<boolean>) => {
     task.completed = e.detail;
     const res = await trpc().tasks.update.mutate({
@@ -61,11 +63,7 @@
       </MenuButton>
       <MenuItems class="absolute z-20 translate-y-2 rounded-lg border border-gray-300 bg-white p-2">
         <MenuItem>
-          <MenuItemButton
-            on:click={() => alert('edit mode')}
-            icon={PencilSquare}
-            class="text-indigo-500"
-          >
+          <MenuItemButton on:click={edit} icon={PencilSquare} class="text-indigo-500">
             Edit
           </MenuItemButton>
         </MenuItem>

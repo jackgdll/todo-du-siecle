@@ -7,7 +7,7 @@
   export let touched: boolean = false;
 </script>
 
-<div class="flex flex-col gap-1">
+<div class="mt-1 flex flex-col gap-1">
   {#each errors as error}
     <div
       class="flex items-center gap-2 rounded-lg border border-red-700 bg-red-200 p-2 text-pink-900 opacity-80"

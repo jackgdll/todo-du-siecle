@@ -4,8 +4,6 @@ node_modules
 /.svelte-kit
 /package
 
-# You should uncomment the next lines in your appplication
-
 .env
 .env.*
-# !.env.example
+!.env.example

@@ -1,17 +1,5 @@
 <script lang="ts">
-  import '@picocss/pico';
-  import { browser } from '$app/environment';
-  import { QueryClient, QueryClientProvider } from '@tanstack/svelte-query';
-
   import '../app.css';
-
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        enabled: browser,
-      },
-    },
-  });
 </script>
 
 <svelte:head>
@@ -24,11 +12,9 @@
   />
 </svelte:head>
 
-<QueryClientProvider client={queryClient}>
-  <main class="m-auto max-w-2xl p-6">
-    <slot />
-  </main>
-</QueryClientProvider>
+<main class="m-auto max-w-2xl p-6">
+  <slot />
+</main>
 
 <style lang="postcss">
   :global(html) {

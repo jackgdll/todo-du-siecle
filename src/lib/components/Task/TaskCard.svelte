@@ -1,6 +1,5 @@
 <script lang="ts">
   import { invalidateAll } from '$app/navigation';
-  import { Priority } from '@prisma/client';
   import {
     Disclosure,
     DisclosureButton,
@@ -19,8 +18,6 @@
   import MenuItemButton from './MenuItemButton.svelte';
 
   export let task: TaskOutput;
-
-  let editMode = false;
 
   const toggleCompleted = async (e: CustomEvent<boolean>) => {
     task.completed = e.detail;
@@ -65,7 +62,7 @@
       <MenuItems class="absolute z-20 translate-y-2 rounded-lg border border-gray-300 bg-white p-2">
         <MenuItem>
           <MenuItemButton
-            on:click={() => (editMode = true)}
+            on:click={() => alert('edit mode')}
             icon={PencilSquare}
             class="text-indigo-500"
           >

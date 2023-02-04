@@ -6,9 +6,10 @@ import { SvelteKitAuth } from '@auth/sveltekit';
 import GitHub from '@auth/core/providers/github';
 import Discord from '@auth/core/providers/discord';
 import { GITHUB_ID, GITHUB_SECRET, DISCORD_ID, DISCORD_SECRET } from '$env/static/private';
+import { sequence } from '@sveltejs/kit/hooks';
 
-export const handle: Handle = async ({ event, resolve }) => {
-  const authRes = await SvelteKitAuth({
+export const handle = sequence(
+  SvelteKitAuth({
     providers: [
       // @ts-expect-error issue https://github.com/nextauthjs/next-auth/issues/6174
       GitHub({
@@ -21,15 +22,11 @@ export const handle: Handle = async ({ event, resolve }) => {
         clientSecret: DISCORD_SECRET,
       }),
     ],
-  })({ event, resolve });
-  // console.log('event.request.url', event.url.href, authRes.status);
-  if (!event.url.pathname.includes('/trpc')) {
-    return authRes;
-  }
-  return createTRPCHandle({
+  }),
+  createTRPCHandle({
     router,
     createContext,
     onError: ({ type, path, error }) =>
       console.error(`Encountered error while trying to process ${type} @ ${path}:`, error),
-  })({ event, resolve });
-};
+  }),
+) satisfies Handle;

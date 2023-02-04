@@ -14,14 +14,14 @@
   import SelectInput from '../inputs/SelectInput.svelte';
   import DateInput from '../inputs/DateInput.svelte';
   import { trpc } from '../../trpc/client';
-  import { goto, invalidateAll } from '$app/navigation';
+  import { invalidateAll } from '$app/navigation';
   import Button from '../inputs/Button.svelte';
   import { TRPCClientError } from '@trpc/client';
   import type { RouterInputs } from '$lib/trpc/router';
   import TextArea from '../inputs/TextArea.svelte';
 
   export let open = false;
-  export let close: () => void = () => goto('/tasks');
+  export let close: () => void;
   export let initialValues: Values = {
     title: '',
     description: '',
@@ -43,7 +43,6 @@
         await trpc().tasks.create.mutate(v);
       }
       invalidateAll();
-      close();
     },
     onError: (err) => {
       if (err instanceof TRPCClientError) {
@@ -104,7 +103,7 @@
     </section>
     <div class="flex justify-end gap-2 border-t border-slate-300 px-7 pt-4">
       <Button on:click={close} variant="secondary">Cancel</Button>
-      <Button type="submit" variant="primary">
+      <Button on:click={close} type="submit" variant="primary">
         <Icon src={editId ? PencilSquare : PlusCircle} size="20" />
         {editId ? 'Edit' : 'Create'}
       </Button>

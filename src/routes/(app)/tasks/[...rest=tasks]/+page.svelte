@@ -6,16 +6,12 @@
   import { Icon } from '@steeze-ui/svelte-icon';
   import { flip } from 'svelte/animate';
   import type { PageServerData } from './$types';
+  import { goto } from '$app/navigation';
 
   export let data: PageServerData;
 
-  let open = false;
-  let editId: string | null = null;
-  let values: Values | undefined;
-
   const newTask = () => {
-    editId = null;
-    open = true;
+    goto('/tasks/new');
   };
 
   const bgColors = {
@@ -30,9 +26,18 @@
   <meta name="description" content="Tasks" />
 </svelte:head>
 
-{#if open}
-  <TaskDialog open={true} {editId} close={() => (open = false)} initialValues={values} />
+{#if data.mode}
+  <TaskDialog
+    open={true}
+    editId={data.id}
+    close={() => {
+      console.log('close');
+      goto('/tasks/');
+    }}
+    initialValues={data.initialValues}
+  />
 {/if}
+<slot />
 <header class="flex items-center">
   <h1 class="my-14 mr-auto text-center text-5xl font-extrabold text-zinc-800 dark:text-zinc-100">
     Le <span class="funky-text">Todo</span> du siècle
@@ -67,9 +72,7 @@
         <TaskCard
           {task}
           edit={() => {
-            editId = task.id;
-            open = true;
-            values = { ...task, due: task.due ? new Date(task.due) : null };
+            goto(`/tasks/edit/${task.id}`);
           }}
         />
       </li>

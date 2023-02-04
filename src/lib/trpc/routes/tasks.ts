@@ -79,7 +79,6 @@ export const tasks = t.router({
     .mutation(async ({ ctx, input }) => {
       const task = await prisma.task.findFirst({
         where: { id: input.id, authorEmail: ctx.session.user.email },
-        select: {},
       });
       if (!task) {
         throw new TRPCError({
@@ -100,7 +99,6 @@ export const tasks = t.router({
     .mutation(async ({ ctx, input }) => {
       const task = await prisma.task.findFirst({
         where: { id: input, authorEmail: ctx.session.user.email },
-        select: {},
       });
       if (!task) {
         throw new TRPCError({

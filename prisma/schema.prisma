@@ -1,0 +1,34 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Task {
+  id          String    @id @default(uuid())
+  title       String    @db.VarChar(255)
+  description String    @db.Text
+  completed   Boolean   @default(false)
+  priority    Priority  @default(LOW)
+  due         DateTime?
+  authorEmail String    @db.VarChar(255)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([authorEmail], name: "tasks_author_email_index")
+  @@map(name: "tasks")
+}
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+}

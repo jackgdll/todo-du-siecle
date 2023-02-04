@@ -206,11 +206,20 @@
       <a class="text-sky-600 underline dark:text-sky-400" href="/tasks">Todo</a> :
     </li>
     <ul class="mt-2 ml-8 mb-4 list-disc">
-      <li class="font-medium">Database synchronization implemented using <strong>tRPC</strong>.</li>
-      <li class="font-medium">Task creation, edition, and deltetion</li>
-      <li class="font-medium">Field validation with <strong>Zod</strong></li>
-      <li class="font-medium">Optimistic updates and route invalidation</li>
-      <li class="font-medium">Task sorting by completed, priority, and due date</li>
+      <li class="font-medium">
+        Synchronisation avec la base de données avec <strong>tRPC</strong>.
+      </li>
+      <li class="font-medium">Création, édition, and déltétion de tâches.</li>
+      <li class="font-medium">Validation des champs avec <strong>Zod</strong>.</li>
+      <li class="font-medium">Mises à jour optimiste et invalidation de route.</li>
+      <li class="font-medium">Triage des tâches par completion, priorité, and date limite.</li>
+    </ul>
+    <li class="font-medium">Autre :</li>
+    <ul class="mt-2 ml-8 mb-4 list-disc">
+      <li class="font-medium">Responsive design.</li>
+      <li class="font-medium">
+        Mode sombre (stocké dans le localStorage, prends en compte le préférences du navigateur)
+      </li>
     </ul>
   </ul>
 </div>

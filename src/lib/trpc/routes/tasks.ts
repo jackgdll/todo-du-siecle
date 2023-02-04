@@ -36,14 +36,11 @@ export const tasks = t.router({
         }),
     )
     .output(taskSchema.nullable())
-    .mutation(({ ctx, input }) => {
-      if (!input) {
-        return null;
-      }
+    .mutation(async ({ ctx, input }) => {
       return prisma.task.create({
         data: {
           ...input,
-          authorEmail: ctx.session?.user?.email ?? '',
+          authorEmail: ctx.session.user.email,
         },
       });
     }),
@@ -51,10 +48,10 @@ export const tasks = t.router({
     .use(logger)
     .use(auth)
     .output(taskSchema.array())
-    .query(({ ctx }) => {
+    .query(async ({ ctx }) => {
       return prisma.task.findMany({
         where: {
-          authorEmail: ctx.session?.user?.email ?? '',
+          authorEmail: ctx.session.user.email,
         },
         orderBy: [{ completed: 'asc' }, { priority: 'desc' }, { due: 'asc' }],
       });
@@ -80,16 +77,14 @@ export const tasks = t.router({
     )
     .output(taskSchema.nullable())
     .mutation(async ({ ctx, input }) => {
-      const task = await prisma.task.findUnique({
-        where: { id: input.id },
-        select: {
-          authorEmail: true,
-        },
+      const task = await prisma.task.findFirst({
+        where: { id: input.id, authorEmail: ctx.session.user.email },
+        select: {},
       });
-      if (!task || task.authorEmail !== ctx.session?.user?.email) {
+      if (!task) {
         throw new TRPCError({
-          code: 'FORBIDDEN',
-          message: 'You are not allowed to update this task',
+          code: 'NOT_FOUND',
+          message: 'Task not found',
         });
       }
       return prisma.task.update({
@@ -103,16 +98,14 @@ export const tasks = t.router({
     .input(taskSchema.shape.id)
     .output(z.boolean())
     .mutation(async ({ ctx, input }) => {
-      const task = await prisma.task.findUnique({
-        where: { id: input },
-        select: {
-          authorEmail: true,
-        },
+      const task = await prisma.task.findFirst({
+        where: { id: input, authorEmail: ctx.session.user.email },
+        select: {},
       });
-      if (!task || task.authorEmail !== ctx.session?.user?.email) {
+      if (!task) {
         throw new TRPCError({
-          code: 'FORBIDDEN',
-          message: 'You are not allowed to delete this task',
+          code: 'NOT_FOUND',
+          message: 'Task not found',
         });
       }
       return prisma.task

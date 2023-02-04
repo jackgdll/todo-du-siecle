@@ -37,7 +37,6 @@
 
   const { form, setFields, setErrors, data, errors, warnings, touched } = createForm<Values>({
     onSubmit: async (v) => {
-      console.log('submit', v);
       if (editId) {
         await trpc().tasks.update.mutate({ id: editId, ...v });
       } else {
@@ -50,7 +49,6 @@
       if (err instanceof TRPCClientError) {
         const errors = JSON.parse(err.message);
         errors.forEach((e: any) => {
-          console.log(e);
           setErrors(e.path[0], e.message);
         });
       } else {

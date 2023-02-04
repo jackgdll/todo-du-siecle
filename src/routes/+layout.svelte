@@ -9,8 +9,6 @@
   import '../app.css';
   import { page } from '$app/stores';
 
-  $: console.log($page);
-
   export let data: LayoutServerData;
 </script>
 

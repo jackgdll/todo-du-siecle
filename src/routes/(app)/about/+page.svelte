@@ -206,10 +206,10 @@
       <li class="font-medium">
         Synchronisation avec la base de données avec <strong>tRPC</strong>.
       </li>
-      <li class="font-medium">Création, édition, and déltétion de tâches.</li>
+      <li class="font-medium">Création, édition, et déltétion de tâches.</li>
       <li class="font-medium">Validation des champs avec <strong>Zod</strong>.</li>
       <li class="font-medium">Mises à jour optimiste et invalidation de route.</li>
-      <li class="font-medium">Triage des tâches par completion, priorité, and date limite.</li>
+      <li class="font-medium">Triage des tâches par completion, priorité, et date limite.</li>
     </ul>
     <li class="font-medium">Autre :</li>
     <ul class="mt-2 ml-8 mb-4 list-disc">

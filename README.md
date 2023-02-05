@@ -42,3 +42,5 @@ pnpm build
 # Preview the production build
 pnpm preview
 ```
+
+⚠️ **Note**: *Remember to create a `.env` file in the root of the project to run locally: An example file is provided [here](./.env.example).*

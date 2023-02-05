@@ -1,14 +1,13 @@
 <script lang="ts">
   import Button from '$lib/components/inputs/Button.svelte';
-  import TaskDialog, { type Values } from '$lib/components/Task/TaskDialog.svelte';
   import TaskCard from '$lib/components/Task/TaskCard.svelte';
   import { PlusCircle } from '@steeze-ui/heroicons';
   import { Icon } from '@steeze-ui/svelte-icon';
   import { flip } from 'svelte/animate';
-  import type { PageServerData } from './$types';
+  import type { LayoutServerData } from './$types';
   import { goto } from '$app/navigation';
 
-  export let data: PageServerData;
+  export let data: LayoutServerData;
 
   const newTask = () => {
     goto('/tasks/new');
@@ -26,17 +25,6 @@
   <meta name="description" content="Tasks" />
 </svelte:head>
 
-{#if data.mode}
-  <TaskDialog
-    open={true}
-    editId={data.id}
-    close={() => {
-      console.log('close');
-      goto('/tasks/');
-    }}
-    initialValues={data.initialValues}
-  />
-{/if}
 <slot />
 <header class="flex items-center">
   <h1 class="my-14 mr-auto text-center text-5xl font-extrabold text-zinc-800 dark:text-zinc-100">

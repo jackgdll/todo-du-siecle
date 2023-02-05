@@ -69,14 +69,24 @@
       <MenuButton class="rounded-full border-0 p-2 hover:bg-gray-200 dark:bg-opacity-20">
         <Icon src={EllipsisVertical} size="20" class="stroke-slate-500 dark:stroke-slate-100" />
       </MenuButton>
-      <MenuItems class="absolute z-20 translate-y-2 rounded-lg border border-gray-300 bg-white p-2">
+      <MenuItems
+        class="dark absolute z-20 translate-y-2 rounded-lg border border-gray-300 bg-white p-2 shadow-sm dark:border-slate-800 dark:bg-slate-700"
+      >
         <MenuItem>
-          <MenuItemButton on:click={edit} icon={PencilSquare} class="text-indigo-500">
+          <MenuItemButton
+            on:click={edit}
+            icon={PencilSquare}
+            class="text-indigo-500 dark:text-violet-400"
+          >
             Edit
           </MenuItemButton>
         </MenuItem>
         <MenuItem>
-          <MenuItemButton on:click={deleteTask} icon={Trash} class="text-red-500">
+          <MenuItemButton
+            on:click={deleteTask}
+            icon={Trash}
+            class="text-red-500 dark:text-rose-500"
+          >
             Delete
           </MenuItemButton>
         </MenuItem>

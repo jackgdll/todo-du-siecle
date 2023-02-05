@@ -1,5 +1,8 @@
 <script lang="ts">
+  import { darkMode } from '$lib/darkMode';
   import '../app.css';
+
+  $darkMode;
 </script>
 
 <slot />

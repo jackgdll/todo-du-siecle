@@ -6,7 +6,7 @@
 </script>
 
 <button
-  class={`flex w-full items-center justify-between gap-5 rounded-md border-0 p-2 text-sm hover:bg-indigo-100 ${
+  class={`flex w-full items-center justify-between gap-5 rounded-md border-0 p-2 text-sm hover:bg-indigo-100 dark:hover:bg-slate-600 ${
     $$restProps.class || ''
   }`}
   on:click

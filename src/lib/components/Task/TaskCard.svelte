@@ -70,7 +70,7 @@
         <Icon src={EllipsisVertical} size="20" class="stroke-slate-500 dark:stroke-slate-100" />
       </MenuButton>
       <MenuItems
-        class="dark absolute z-20 translate-y-2 rounded-lg border border-gray-300 bg-white p-2 shadow-sm dark:border-slate-800 dark:bg-slate-700"
+        class="dark absolute z-20 -translate-x-1/2 rounded-lg border border-gray-300 bg-white p-2 shadow-sm dark:border-slate-800 dark:bg-slate-700 md:translate-y-2 md:translate-x-0"
       >
         <MenuItem>
           <MenuItemButton

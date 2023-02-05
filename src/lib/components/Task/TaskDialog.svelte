@@ -69,7 +69,7 @@
   <DialogOverlay class="absolute top-0 left-0 z-10 h-full w-full bg-slate-600 opacity-50" />
   <form
     use:form
-    class="absolute top-1/2 left-1/2 z-20 flex max-h-[90vh] w-1/2 max-w-full -translate-x-1/2 -translate-y-1/2 flex-col space-y-4 rounded-lg bg-slate-50 py-7 shadow-lg dark:bg-slate-800"
+    class="absolute top-1/2 left-1/2 z-20 flex max-h-[90vh] w-11/12 max-w-full -translate-x-1/2 -translate-y-1/2 flex-col space-y-4 rounded-lg bg-slate-50 py-7 shadow-lg dark:bg-slate-800 md:w-1/2"
   >
     <DialogTitle class="funky-text z-20 text-center text-3xl"
       >{editId ? 'Edit Task' : 'Create new Task'}</DialogTitle
@@ -101,9 +101,9 @@
         touched={$touched.due}
       />
     </section>
-    <div class="flex justify-end gap-2 border-t border-slate-300 px-7 pt-4">
-      <Button on:click={close} variant="secondary">Cancel</Button>
-      <Button on:click={close} type="submit" variant="primary">
+    <div class="flex w-full flex-col-reverse justify-end gap-2 px-7  md:flex-row">
+      <Button on:click={close} variant="secondary" class="w-full md:w-auto">Cancel</Button>
+      <Button on:click={close} type="submit" variant="primary" class="w-full md:w-auto">
         <Icon src={editId ? PencilSquare : PlusCircle} size="20" />
         {editId ? 'Edit' : 'Create'}
       </Button>

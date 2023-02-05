@@ -11,7 +11,7 @@
 
 <button
   on:click
-  class="flex w-fit items-center justify-between gap-1 rounded-md bg-gradient-to-br px-3 py-2 {$$restProps.class} {classes[
+  class="flex w-fit items-center justify-center gap-1 rounded-md bg-gradient-to-br px-3 py-2 {$$restProps.class} {classes[
     variant
   ]}"
   {type}

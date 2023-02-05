@@ -26,9 +26,10 @@
 </svelte:head>
 
 <slot />
-<header class="flex items-center">
-  <h1 class="my-14 mr-auto text-center text-5xl font-extrabold text-zinc-800 dark:text-zinc-100">
-    Le <span class="funky-text">Todo</span> du siècle
+<header class="mt-16 mb-8 flex items-center gap-4 ">
+  <h1 class="mr-auto text-5xl font-extrabold text-zinc-800 dark:text-zinc-100 md:text-center">
+    Le <span class="funky-text">Todo</span><br class="md:hidden" />
+    du siècle
   </h1>
   <Button on:click={newTask}>
     <Icon src={PlusCircle} size="20" />

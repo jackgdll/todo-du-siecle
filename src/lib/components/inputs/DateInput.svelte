@@ -4,7 +4,7 @@
   export let placeholder: string = label;
 </script>
 
-<div class="flex max-h-fit items-baseline sm:flex-col">
+<div class="flex max-h-fit flex-col items-baseline">
   <label for={name} class="mb-1 p-0 text-sm capitalize text-slate-700 dark:text-slate-300"
     >{label}</label
   >

@@ -21,7 +21,7 @@
   />
 </svelte:head>
 
-<div class="absolute right-4 top-4 flex items-center gap-3">
+<div class="absolute top-4 flex w-full items-center justify-evenly md:right-4 md:w-auto md:gap-3">
   {#if $page.route.id === '/(app)/about'}
     <a
       href={data.session ? '/tasks' : '/login'}
@@ -54,10 +54,10 @@
       <img
         alt="profile"
         src={data.session?.user?.image}
-        class="mx-auto h-20 w-20 rounded-lg object-cover "
+        class="mx-auto h-12 w-12 rounded-lg object-cover md:h-20 md:w-20 "
       />
       <div
-        class="center absolute flex h-20 w-20 -translate-y-full items-center justify-center rounded-lg bg-slate-900 p-2 align-middle opacity-0 transition-opacity hover:opacity-70"
+        class="center absolute flex h-12 w-12 -translate-y-full items-center justify-center rounded-lg bg-slate-900 p-2 align-middle opacity-0 transition-opacity hover:opacity-70 md:h-20 md:w-20"
       >
         <Icon src={ArrowRightOnRectangle} size="50" class="stroke-white" />
       </div>

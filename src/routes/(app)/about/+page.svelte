@@ -17,7 +17,7 @@
     >
   </p>
   <p>
-    Dépôt GitHub: <a
+    Dépôt GitHub : <a
       class="text-sky-600 underline dark:text-sky-400"
       target="_blank"
       rel="noopener noreferrer"

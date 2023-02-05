@@ -1,6 +1,7 @@
 # Le Todo du Siècle
 
-[todo-du-siecle-production.up.railway.app](https://todo-du-siecle-production.up.railway.app)
+Déployé à l'adresse : [todo-du-siecle-production.up.railway.app](https://todo-du-siecle-production.up.railway.app)
+Dépôt GitHub: [github.com/therosbif/todo-du-siecle](https://github.com/therosbif/todo-du-siecle)
 
 ## Description
 

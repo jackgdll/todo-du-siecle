@@ -19,6 +19,7 @@
   import { TRPCClientError } from '@trpc/client';
   import type { RouterInputs } from '$lib/trpc/router';
   import TextArea from '../inputs/TextArea.svelte';
+  import { page } from '$app/stores';
 
   export let open = false;
   export let close: () => void;
@@ -38,9 +39,9 @@
   const { form, setFields, setErrors, data, errors, warnings, touched } = createForm<Values>({
     onSubmit: async (v) => {
       if (editId) {
-        await trpc().tasks.update.mutate({ id: editId, ...v });
+        await trpc($page).tasks.update.mutate({ id: editId, ...v });
       } else {
-        await trpc().tasks.create.mutate(v);
+        await trpc($page).tasks.create.mutate(v);
       }
       invalidateAll();
     },

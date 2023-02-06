@@ -1,5 +1,6 @@
 <script lang="ts">
   import { invalidateAll } from '$app/navigation';
+  import { page } from '$app/stores';
   import {
     Disclosure,
     DisclosureButton,
@@ -23,7 +24,7 @@
 
   const toggleCompleted = async (e: CustomEvent<boolean>) => {
     task.completed = e.detail;
-    const res = await trpc().tasks.update.mutate({
+    const res = await trpc($page).tasks.update.mutate({
       id: task.id,
       completed: e.detail,
     });
@@ -35,7 +36,7 @@
   };
 
   const deleteTask = async () => {
-    const res = await trpc().tasks.delete.mutate(task.id);
+    const res = await trpc($page).tasks.delete.mutate(task.id);
     if (res) {
       invalidateAll();
       return;

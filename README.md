@@ -1,11 +1,8 @@
 # Le Todo du Siècle
 
-Déployé à l'adresse : [todo-du-siecle-production.up.railway.app](https://todo-du-siecle-production.up.railway.app)
-Dépôt GitHub: [github.com/therosbif/todo-du-siecle](https://github.com/therosbif/todo-du-siecle)
+Deployment : [todo-du-siecle-production.up.railway.app](https://todo-du-siecle-production.up.railway.app)
 
-## Description
-
-Projet réalisé par Jack Goodall (NI: 537010048) dans le cadre du cours GLO-3202 — Sécurité des applications Web.
+GitHub Repo: [github.com/therosbif/todo-du-siecle](https://github.com/therosbif/todo-du-siecle)
 
 ## Tech Stack
 

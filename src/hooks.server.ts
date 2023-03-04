@@ -8,6 +8,8 @@ import Discord from '@auth/core/providers/discord';
 import { GITHUB_ID, GITHUB_SECRET, DISCORD_ID, DISCORD_SECRET } from '$env/static/private';
 import { sequence } from '@sveltejs/kit/hooks';
 import type { Provider } from '@auth/core/providers';
+import prisma from '$lib/prisma';
+import { PrismaAdapter } from "@next-auth/prisma-adapter"
 
 export const handle = sequence(
   SvelteKitAuth({
@@ -21,6 +23,7 @@ export const handle = sequence(
         clientSecret: DISCORD_SECRET,
       }),
     ] as Provider[], // !: https://github.com/nextauthjs/next-auth/issues/6174
+    adapter: PrismaAdapter(prisma),
   }),
   createTRPCHandle({
     router,

@@ -40,7 +40,11 @@ export const tasks = t.router({
       return prisma.task.create({
         data: {
           ...input,
-          authorEmail: ctx.session.user.email,
+          user: {
+            connect: {
+              email: ctx.session.user.email,
+            },
+          }
         },
       });
     }),
@@ -51,7 +55,9 @@ export const tasks = t.router({
     .query(async ({ ctx }) => {
       return prisma.task.findMany({
         where: {
-          authorEmail: ctx.session.user.email,
+          user: {
+            email: ctx.session.user.email,
+          },
         },
         orderBy: [{ completed: 'asc' }, { priority: 'desc' }, { due: 'asc' }],
       });
@@ -78,7 +84,12 @@ export const tasks = t.router({
     .output(taskSchema.nullable())
     .mutation(async ({ ctx, input }) => {
       const task = await prisma.task.findFirst({
-        where: { id: input.id, authorEmail: ctx.session.user.email },
+        where: {
+          id: input.id,
+          user: {
+            email: ctx.session.user.email,
+          },
+        }
       });
       if (!task) {
         throw new TRPCError({
@@ -98,7 +109,10 @@ export const tasks = t.router({
     .output(z.boolean())
     .mutation(async ({ ctx, input }) => {
       const task = await prisma.task.findFirst({
-        where: { id: input, authorEmail: ctx.session.user.email },
+        where: {
+          id: input,
+          user: { email: ctx.session.user.email }
+        },
       });
       if (!task) {
         throw new TRPCError({

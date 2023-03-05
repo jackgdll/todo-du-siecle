@@ -19,6 +19,7 @@
     href="https://fonts.googleapis.com/css2?family=Cormorant:wght@500&display=swap&text=BOOKSTALFNTYVE"
     rel="stylesheet"
   />
+  <title>Login</title>
 </svelte:head>
 
 <div class="absolute top-4 flex w-full items-center justify-evenly md:right-4 md:w-auto md:gap-3">
@@ -53,7 +54,7 @@
     >
       <img
         alt="profile"
-        src={data.session?.user?.image}
+        src={data.session.user?.image}
         class="mx-auto h-12 w-12 rounded-lg object-cover md:h-20 md:w-20 "
       />
       <div

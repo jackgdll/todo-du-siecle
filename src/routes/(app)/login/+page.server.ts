@@ -7,3 +7,4 @@ export const load = (async (event) => {
 
   return {};
 }) satisfies PageServerLoad;
+

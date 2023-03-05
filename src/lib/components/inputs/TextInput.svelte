@@ -5,8 +5,9 @@
   export let name: string;
   export let label: string = name;
   export let placeholder: string = label;
-  export let type: string = 'text';
   export let icon: IconSource | undefined = undefined;
+  export let value: string | undefined = undefined;
+  export let disabled = false;
 </script>
 
 <div class="relative flex flex-col items-baseline">
@@ -21,10 +22,12 @@
     />
   {/if}
   <input
-    {type}
+    type="text"
     {name}
     {placeholder}
-    class="pl-$pr-2 ml-auto w-full flex-1 rounded-lg border border-gray-300 bg-white py-2 placeholder:capitalize focus:border-transparent focus:outline-none focus:ring-2 focus:ring-sky-600 dark:border-gray-700 dark:bg-slate-700 dark:text-slate-200 dark:placeholder:text-slate-500"
+    bind:value
+    {disabled}
+    class="pl-$pr-2 ml-auto w-full flex-1 rounded-lg border border-gray-300 bg-white py-2 placeholder:capitalize focus:border-transparent focus:outline-none focus:ring-2 focus:ring-sky-600 disabled:text-slate-400 dark:border-gray-700 dark:bg-slate-700 dark:text-slate-200 dark:placeholder:text-slate-500"
     class:p-8={!!icon}
     class:p-2={!icon}
   />

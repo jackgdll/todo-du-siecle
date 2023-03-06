@@ -45,7 +45,7 @@ export const handle = sequence(
         from: EMAIL_FROM,
       } as EmailConfig),
     ] as Provider[], // !: https://github.com/nextauthjs/next-auth/issues/6174
-    adapter: PrismaAdapter(prisma),
+    adapter: { ...PrismaAdapter(prisma), deleteSession: (sessionToken) => prisma.session.deleteMany({ where: { sessionToken } }) },
     session: {
       maxAge: 2 * 24 * 60 * 60, // 2 days
     },

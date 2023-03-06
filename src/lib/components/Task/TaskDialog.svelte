@@ -5,7 +5,7 @@
 <script lang="ts">
   import { Dialog, DialogOverlay, DialogTitle } from '@rgossiaux/svelte-headlessui';
   import { createForm } from 'felte';
-  import { z } from 'zod';
+  import { z, ZodError, type ZodIssue } from 'zod';
   import { validator } from '@felte/validator-zod';
   import { Icon } from '@steeze-ui/svelte-icon';
   import { PencilSquare, PlusCircle } from '@steeze-ui/heroicons';
@@ -47,9 +47,11 @@
     },
     onError: (err) => {
       if (err instanceof TRPCClientError) {
-        const errors = JSON.parse(err.message);
-        errors.forEach((e: any) => {
-          setErrors(e.path[0], e.message);
+        const errors: ZodIssue[] = JSON.parse(err.message);
+        errors && errors.forEach((e) => {
+          const path = e.path.at(0)?.toString() as keyof Values | undefined;
+          if (path)
+            setErrors(path, e.message);
         });
       } else {
         throw err;

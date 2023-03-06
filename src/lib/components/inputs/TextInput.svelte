@@ -18,11 +18,12 @@
     <Icon
       src={icon}
       size="20"
-      class="absolute translate-y-8 translate-x-2 stroke-slate-800 dark:stroke-slate-100"
+      class="absolute translate-y-9 translate-x-2 stroke-slate-800 dark:stroke-slate-100"
     />
   {/if}
   <input
     type="text"
+    on:blur
     {name}
     {placeholder}
     bind:value

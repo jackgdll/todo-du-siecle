@@ -4,7 +4,7 @@
 
   export let errors: string[] = [];
   export let warnings: string[] = [];
-  export let touched: boolean = false;
+  export let touched = false;
 </script>
 
 <div class="my-2 flex flex-col gap-1">

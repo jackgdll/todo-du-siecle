@@ -1,5 +1,5 @@
 import type { LayoutServerLoad } from './$types';
-import { MD5 } from 'crypto-js';
+import crypto from 'crypto-js';
 
 export const load: LayoutServerLoad = async (event) => {
   const session = await event.locals.getSession();
@@ -9,7 +9,7 @@ export const load: LayoutServerLoad = async (event) => {
   const initials = session.user.name ?? session.user.email?.split('@').at(0)?.split('.').join('+') ?? '';
   const initialsAvatar = `https://ui-avatars.com/api/?name=${initials}&background=random`;
 
-  const gravatarId = MD5(session.user.email?.trim().toLowerCase() || '');
+  const gravatarId = crypto.MD5(session.user.email?.trim().toLowerCase() || '');
   const gravatar = `http://www.gravatar.com/avatar/${gravatarId}?d=${encodeURIComponent(initialsAvatar)}`;
 
   session.user.image = gravatar;

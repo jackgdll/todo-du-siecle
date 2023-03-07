@@ -219,4 +219,79 @@
       </li>
     </ul>
   </ul>
+  <h2 class="mt-7 mb-4 text-3xl font-bold">Sécurité</h2>
+
+  <h3 class="mt-2 font-semibold">Cache-Control</h3>
+
+  <p class="mt-2 indent-4">
+    Aucune page protégée n'est mise en cache donc cette attaque n'est pas possible
+  </p>
+
+  <h3 class="mt-2 font-semibold">CSRF</h3>
+
+  <p>
+    SvelteKit vérifie automatiquement le hearder <code>origin</code> pour les requêtes
+    <code>POST</code> : https://kit.svelte.dev/docs/configuration#csrf
+  </p>
+
+  <p>
+    De plus SvelteKitAuth inclus une protection contre les attaques CSRF:
+    https://next-auth.js.org/getting-started/rest-api#post-apiauthsigninprovider
+  </p>
+
+  <h3 class="mt-2 font-semibold">Spams et Pourriels</h3>
+
+  <p class="mt-2 indent-4">
+    L'application envoie un mail au moment de la connexion pour vérifier l'identité de
+    l'utilisateur. L'addresse utilisée pour l'envoi du courriel de vérification est indiqué sur la
+    page de connexion pour être sur que le courriel est bien émit de mon application.
+  </p>
+
+  <h3 class="mt-2 font-semibold">XSS</h3>
+
+  <p class="mt-2 indent-4">
+    Le site est protégé des attaques XSS par la configuration CSP dans <code>svelte.config.js</code
+    >: https://kit.svelte.dev/docs/configuration#csp
+  </p>
+
+  <p class="mt-2 indent-4">
+    <code> csp: &lbrace; directives: &lbrace; 'script-src': ['self'], &rbrace;, &rbrace;, </code>
+  </p>
+
+  <h3 class="mt-2 font-semibold">SRI</h3>
+
+  <p class="mt-2 indent-4">
+    La validation de l'integrité des sous ressources est activée avec la directive CSP suivante dans <code
+      >svelte.config.js</code
+    >:
+    <code> 'require-sri-for': ['script style'], </code>
+  </p>
+
+  <p class="mt-2 indent-4">De plus le build est effectué avec un lockfile.</p>
+
+  <h3 class="mt-2 font-semibold">Clickjacking</h3>
+
+  <p class="mt-2 indent-4">
+    La directive CSP <code>frame-ancestors</code> est mise à <code>&quot;self&quot;</code>. Les
+    cookies sont <code>strict</code> en HTTPS et <code>SameSite=Lax</code>.
+  </p>
+
+  <h3 class="mt-2 font-semibold">Injection SQL</h3>
+
+  <p class="mt-2 indent-4">
+    L'ORM Prisma est utilisé pour toute requête SQL, une injection est donc impossible.
+  </p>
+
+  <h3 class="mt-2 font-semibold">Dictionnary attack</h3>
+
+  <p class="mt-2 indent-4">
+    L'application n'utilise pas de mots de passe mais des fournisseurs OAuth ou un mail de
+    vérification. Cela empêche les attaques par force brute ou avec dictionnare de mot de passe.
+  </p>
+
+  <h3 class="mt-2 font-semibold">Autre</h3>
+  <p class="mt-2 indent-4">
+    SvelteKit, tRPC, et Prisma offrent tous des défauts sensible donc la majorité des vulnérabilités
+    les plus courantes sont éliminés sans configuration.
+  </p>
 </div>

@@ -12,14 +12,7 @@
 </script>
 
 <svelte:head>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant:wght@500&display=swap&text=BOOKSTALFNTYVE"
-    rel="stylesheet"
-  />
-  <title>Login</title>
+ <title>Login</title>
 </svelte:head>
 
 <div class="absolute top-4 flex w-full items-center justify-evenly md:right-4 md:w-auto md:gap-3">

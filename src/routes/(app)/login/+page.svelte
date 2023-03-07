@@ -91,6 +91,9 @@
       >
         Sign in with email
       </button>
+        <span class="text-center text-sm text-gray-500 dark:text-gray-400">
+          You will receive a verification email from <a href="mailto:todo.du.siecle@outlook.com" class="text-blue-500">todo.du.siecle@outlook.com</a>. 
+        </span>
     </form>
   </div>
 </div>
